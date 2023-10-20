@@ -24,7 +24,6 @@ if __name__ == '__main__':
     agent = Agent(lr, gamma, state_size, action_size)
 
     total_reward_list = []
-    avg_reward_list = []
 
     for eps in range(1, n_training_episodes + 1):
         state, _ = env.reset()

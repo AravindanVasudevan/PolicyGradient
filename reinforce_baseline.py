@@ -56,11 +56,11 @@ class Agent():
 
         value_t = self.value_network(state_t).to(device)
         with torch.no_grad():
-            advantage_t = return_t - value_t
+            b_t = return_t - value_t
 
         selected_action_prob = self.policy_network(state_t).gather(1, action_t)
         
-        loss = torch.mean(-torch.log(selected_action_prob) * advantage_t)
+        loss = torch.mean(-torch.log(selected_action_prob) * b_t)
         self.optimizer.zero_grad()
         loss.backward()
         self.optimizer.step() 
